@@ -18,7 +18,7 @@ class CountryResource extends Resource
     protected static ?string $model = Country::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-flag'; // https://heroicons.com/
-    
+
     protected static ?string $navigationLabel = 'Country'; // default: Resource::$label
 
     protected static ?string $modelLabel = 'Employees Country';     // default: Str::title(Str::snake(class_basename(static::getModel()), ' '))
@@ -33,7 +33,17 @@ class CountryResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\TextInput::make('name')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('code')
+                    ->required()
+                    ->maxLength(3),
+                Forms\Components\TextInput::make('phonecode')
+                    ->required()
+                    ->numeric()
+                    ->maxLength(255),
+
             ]);
     }
 

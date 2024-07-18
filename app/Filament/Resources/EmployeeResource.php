@@ -29,6 +29,30 @@ class EmployeeResource extends Resource
                 Forms\Components\Section::make('User Name')
                     ->description('Please enter your name')
                     ->schema([
+                        Forms\Components\Select::make('country_id')
+                            ->relationship(name: 'country', titleAttribute: 'name')
+                            ->searchable()
+                            ->preload()
+                            ->required(),
+                        Forms\Components\Select::make('state_id')
+                            ->relationship(name: 'state', titleAttribute: 'name')
+                            ->searchable()
+                            ->preload()
+                            ->required(),
+                        Forms\Components\Select::make('city_id')
+                            ->relationship(name: 'city', titleAttribute: 'name')
+                            ->searchable()
+                            ->preload()
+                            ->required(),
+                        Forms\Components\Select::make('department_id')
+                            ->relationship(name: 'department', titleAttribute: 'name')
+                            ->searchable()
+                            ->preload()
+                            ->required(),
+                    ])->columns(2),
+                Forms\Components\Section::make('User Name')
+                    ->description('Please enter your name')
+                    ->schema([
                         Forms\Components\TextInput::make('first_name')
                             ->required()
                             ->maxLength(255),
@@ -40,7 +64,7 @@ class EmployeeResource extends Resource
                             ->maxLength(255),
                     ])->columns(3),
                 Forms\Components\Section::make('User Address')
-                   
+
                     ->schema([
                         Forms\Components\TextInput::make('address')
                             ->required()
@@ -50,7 +74,7 @@ class EmployeeResource extends Resource
                             ->maxLength(255),
                     ])->columns(2),
                 Forms\Components\Section::make('User Date')
-                  
+
                     ->schema([
                         Forms\Components\DatePicker::make('date_of_birth')
                             ->required(),

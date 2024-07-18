@@ -18,7 +18,7 @@ class StateResource extends Resource
     protected static ?string $model = State::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-building-library'; // https://heroicons.com/
-    
+
     protected static ?string $navigationLabel = 'State'; // default: Resource::$label
 
     protected static ?string $modelLabel = 'Employees State';     // default: Str::title(Str::snake(class_basename(static::getModel()), ' '))
@@ -31,9 +31,11 @@ class StateResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('country_id')
-                    ->required()
-                    ->numeric(),
+                Forms\Components\Select::make('country_id')
+                    ->relationship(name: 'country', titleAttribute: 'name')
+                    ->searchable()
+                    ->preload()
+                    ->required(),
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
