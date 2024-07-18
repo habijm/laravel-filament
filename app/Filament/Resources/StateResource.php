@@ -17,7 +17,7 @@ class StateResource extends Resource
 {
     protected static ?string $model = State::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-flag'; // https://heroicons.com/
+    protected static ?string $navigationIcon = 'heroicon-o-building-library'; // https://heroicons.com/
     
     protected static ?string $navigationLabel = 'State'; // default: Resource::$label
 
