@@ -6,8 +6,19 @@
 - [Dokumentasi](https://filamentphp.com/).
 
 
+- Instalasi
+```
+composer require filament/filament:"^3.2" -W
+ 
+php artisan filament:install --panels
+```
 
+- Membuat User
+```
+php artisan make:filament-user
+```
+
+- Membuat resource Filament baru dalam aplikasi Laravel
 ```
 php artisan make:filament-resource User --generate --view
 ```
-Digunakan untuk membuat resource Filament baru dalam aplikasi Laravel
