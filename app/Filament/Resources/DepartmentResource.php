@@ -18,7 +18,7 @@ class DepartmentResource extends Resource
     protected static ?string $model = Department::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-academic-cap'; // https://heroicons.com/
-    
+
     protected static ?string $navigationLabel = 'Department'; // default: Resource::$label
 
     protected static ?string $modelLabel = 'Department';     // default: Str::title(Str::snake(class_basename(static::getModel()), ' '))
@@ -43,6 +43,7 @@ class DepartmentResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
+                Tables\Columns\TextColumn::make('employees_count')->counts('employees'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
