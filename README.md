@@ -22,3 +22,9 @@ php artisan make:filament-user
 ```
 php artisan make:filament-resource User --generate --view
 ```
+
+- Membuat Filament relation manager
+```
+php artisan make:filament-relation-manager CountryResource states name
+```
+Perintah ini akan menghasilkan file-file yang diperlukan dan mengatur manajemen relasi states dalam CountryResource di panel admin Filament Anda.
