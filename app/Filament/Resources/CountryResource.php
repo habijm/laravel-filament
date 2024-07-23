@@ -33,6 +33,8 @@ class CountryResource extends Resource
 
     public static ?int $navigationSort = 1; // Urutan
 
+    
+
     // public static ?string $slug = 'employees-country'; // Nama URL
 
     public static function form(Form $form): Form
