@@ -20,21 +20,23 @@ use Filament\Tables\Filters\Filter;
 use App\Models\State as ModelsState;
 use Filament\Forms\Components\Select;
 use Filament\Tables\Filters\Indicator;
+use Filament\Forms\Components\Tabs\Tab;
 use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Model;
 use Filament\Forms\Components\TextInput;
+use Filament\Notifications\Notification;
+use Filament\Tables\Enums\FiltersLayout;
 use Filament\Forms\Components\DatePicker;
 use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
 use Filament\Infolists\Components\Section;
+use Illuminate\Contracts\Support\Htmlable;
 use Filament\Infolists\Components\TextEntry;
 use NunoMaduro\Collision\Adapters\Phpunit\State;
 use App\Filament\Resources\EmployeeResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\EmployeeResource\RelationManagers;
-use Filament\Tables\Enums\FiltersLayout;
-use Illuminate\Contracts\Support\Htmlable;
 
 class EmployeeResource extends Resource
 {
@@ -219,23 +221,28 @@ class EmployeeResource extends Resource
                     })
                     ->indicateUsing(function (array $data): array {
                         $indicators = [];
-                 
+
                         if ($data['created_from'] ?? null) {
                             $indicators[] = Indicator::make('Created from: ' . Carbon::parse($data['created_from'])->toFormattedDateString())
                                 ->removeField('created_from');
                         }
-                 
+
                         if ($data['created_until'] ?? null) {
                             $indicators[] = Indicator::make('Created until: ' . Carbon::parse($data['created_until'])->toFormattedDateString())
                                 ->removeField('created_until');
                         }
-                 
+
                         return $indicators;
                     })
-                ])
+            ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make()
+                    ->successNotification(Notification::make()
+                        ->success()
+                        ->title('Employee deleted')
+                        ->body('The employee was created successfully.'))
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
