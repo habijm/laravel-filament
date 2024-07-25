@@ -29,6 +29,6 @@ class DatabaseSeeder extends Seeder
             CitySeeder::class,
         ]);
 
-        Department::create(['name' => 'Frontend Develover']);
+      
     }
 }
